@@ -8,7 +8,7 @@
         <!--<property name="citate" value="Bogactwo się bierze z pracy"/>-->
     </bean>
 
-    <bean id="hummer" class="pl.sdacademy.model.Tool">
+    <bean id="hummer" class="pl.sdacademy.model.Tool" scope="prototype">
         <constructor-arg name="weight" value="5"/>
         <constructor-arg name="name" value="Młoteczek"/>
     </bean>

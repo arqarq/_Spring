@@ -9,7 +9,7 @@ public class Tool {
 
     public Tool(int weight, String name) {
         this.weight = weight;
-        this.name = name;
+        this.name = name + (int) (Math.random() * 100);
     }
 
     public int getWeight() {
