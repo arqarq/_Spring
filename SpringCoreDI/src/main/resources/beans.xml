@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean id="wiseMotto" class="pl.sdacademy.model.WorkerMotto">
         <constructor-arg value="Ciężką pracą ludzie się bogacą"/>
@@ -14,6 +14,7 @@
     </bean>
 
     <bean id="worker" class="pl.sdacademy.model.Worker" init-method="addDefaultTool">
+        <!--<context:component-scan base-package="pl.sdacademy"/>-->
         <property name="age" value="40"/>
         <property name="profession" value="builder"/>
         <property name="motto" ref="wiseMotto"/>
@@ -26,4 +27,6 @@
             </list>
         </property>
     </bean>
+
+    <bean class="pl.sdacademy.model.MyBeanPostProcessor"/>
 </beans>

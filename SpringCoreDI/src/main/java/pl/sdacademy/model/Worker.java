@@ -61,7 +61,7 @@ public class Worker {
                 '}';
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void addDefaultTool() {
         tools.add(new Tool(1, profession + "-tool"));
     }

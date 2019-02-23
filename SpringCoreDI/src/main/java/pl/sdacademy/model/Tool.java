@@ -1,6 +1,8 @@
 package pl.sdacademy.model;
 
-public class Tool {
+import org.springframework.beans.factory.InitializingBean;
+
+public class Tool implements InitializingBean {
     private int weight;
     private String name;
 
@@ -34,5 +36,10 @@ public class Tool {
                 "weight=" + weight +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("After properties set");
     }
 }
