@@ -6,7 +6,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class HelloSpringApp {
     public static void main(String[] args) {
         ApplicationContext context =
-                new ClassPathXmlApplicationContext("beans.xml");
+//                new ClassPathXmlApplicationContext("beans.xml");
+                new ClassPathXmlApplicationContext(new String[]{"beans.xml"});
 
         HelloSpring bean = (HelloSpring) context.getBean("helloSpring");
         System.out.println(bean.getWelcomeMessage());
