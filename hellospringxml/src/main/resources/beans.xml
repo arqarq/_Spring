@@ -7,4 +7,10 @@
     <bean id="helloSpring" class="pl.sdacademy.HelloSpring">
         <property name="welcomeMessage" value="Hello Spring!!!"/>
     </bean>
+    <bean id="helloSingletonGreeter" class="pl.sdacademy.HelloSpring" scope="singleton">
+        <property name="welcomeMessage" value="Hello from singleton!!!"/>
+    </bean>
+    <bean id="helloPrototypeGreeter" class="pl.sdacademy.HelloSpring" scope="prototype">
+        <property name="welcomeMessage" value="Hello from prototype!!!"/>
+    </bean>
 </beans>
