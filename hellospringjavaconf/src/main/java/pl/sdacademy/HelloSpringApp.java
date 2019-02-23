@@ -3,7 +3,11 @@ package pl.sdacademy;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 
+import java.util.logging.Logger;
+
 public class HelloSpringApp {
+    private static final Logger logger = Logger.getLogger(HelloSpringApp.class.getName());
+
     public static void main(String[] args) {
 //        ApplicationContext context = new AnnotationConfigApplicationContext(HelloSpringConfig.class);
         ApplicationContext context = SpringApplication.run(HelloSpringConfig.class);
@@ -21,5 +25,7 @@ public class HelloSpringApp {
 
         System.out.println("comparing singletons: " + beanS1.equals(beanS2));
         System.out.println("comparing prototypes: " + beanP1.equals(beanP2));
+
+        logger.info(String.format("====== %s", beanP2.getWelcomeMessage()));
     }
 }
