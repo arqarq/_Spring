@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 //@ResponseStatus(HttpStatus.OK)
 public class GreetingController {
+//    @Autowired // niezalecane bez konstruktora
+//    private GreetingService greetingService;
+    private final GreetingService greetingService;
+
     @Autowired
-    private GreetingService greetingService;
+    public GreetingController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
 
     @GetMapping("/greetingEndpoint")
     public String greeting(Model model,
