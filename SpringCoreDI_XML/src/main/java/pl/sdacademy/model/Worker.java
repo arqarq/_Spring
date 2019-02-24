@@ -1,6 +1,5 @@
 package pl.sdacademy.model;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 public class Worker {
@@ -61,7 +60,7 @@ public class Worker {
                 '}';
     }
 
-//    @PostConstruct
+    //    @PostConstruct
     public void addDefaultTool() {
         tools.add(new Tool(1, profession + "-tool"));
     }
