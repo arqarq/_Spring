@@ -18,8 +18,8 @@ public class WorkerMottoTest {
     @Test
     public void shouldWorkerMottoBePrototype() {
         // Given
-        WorkerMotto workerMotto = (WorkerMotto) applicationContext.getBean("workerMotto");
-        WorkerMotto workerMotto2 = (WorkerMotto) applicationContext.getBean("workerMotto");
+        WorkerMotto workerMotto = (WorkerMotto) applicationContext.getBean("wiseMotto");
+        WorkerMotto workerMotto2 = (WorkerMotto) applicationContext.getBean("wiseMotto");
         // When
         // Then
         assertNotEquals(workerMotto, workerMotto2);

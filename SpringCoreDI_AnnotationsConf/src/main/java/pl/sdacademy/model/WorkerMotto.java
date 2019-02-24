@@ -3,12 +3,13 @@ package pl.sdacademy.model;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("wiseMotto")
 @Scope("prototype")
 public class WorkerMotto {
     private String citate;
 
     public WorkerMotto() {
+        citate = "Ciężką pracą ludzie się bogacą";
     }
 
     public WorkerMotto(String citate) {

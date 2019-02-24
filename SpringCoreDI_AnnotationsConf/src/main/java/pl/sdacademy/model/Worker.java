@@ -1,5 +1,6 @@
 package pl.sdacademy.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,9 +10,12 @@ public class Worker {
     private String profession;
     private int age;
     private List<Tool> tools;
+
+    @Autowired
     private WorkerMotto motto;
 
     public Worker() {
+        this.profession = "builder";
     }
 
     public Worker(String profession, int age, List<Tool> tools, WorkerMotto motto) {
@@ -25,6 +29,7 @@ public class Worker {
         return tools;
     }
 
+    @Autowired
     public void setTools(List<Tool> tools) {
         this.tools = tools;
     }
@@ -33,6 +38,7 @@ public class Worker {
         return motto;
     }
 
+    @Autowired
     public void setMotto(WorkerMotto workerMotto) {
         this.motto = workerMotto;
     }

@@ -9,7 +9,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.sdacademy.model.Worker;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {pl.sdacademy.RunnerConf.class})
@@ -20,7 +19,7 @@ public class GarageServiceTest {
     @Test
     public void shouldGarageServiceWithBean() {
         // Given
-        Worker worker = (Worker) applicationContext.getBean("mechanik");
+        Worker worker = (Worker) applicationContext.getBean("mechanic");
         // When
         String profession = worker.getProfession();
         // Then
@@ -34,7 +33,7 @@ public class GarageServiceTest {
         // When
         String profession = worker.getProfession();
         // Then
-        assertNull(profession);
+        assertEquals(profession, "builder");
     }
 
     @Test

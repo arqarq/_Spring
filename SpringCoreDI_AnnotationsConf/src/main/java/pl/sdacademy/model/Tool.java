@@ -2,16 +2,23 @@ package pl.sdacademy.model;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
+import pl.sdacademy.Runner;
+
+import java.util.logging.Logger;
 
 @Component
 public class Tool implements InitializingBean {
+    private static final Logger LOG = Logger.getLogger(Runner.class.getName());
+
     private int weight;
     private String name;
 
     public Tool() {
+        this.weight = 1;
+        this.name = "Just a tool";
     }
 
-    Tool(int weight, String name) {
+    public Tool(int weight, String name) {
         this.weight = weight;
         this.name = name + (int) (Math.random() * 100);
     }
@@ -42,6 +49,6 @@ public class Tool implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("After properties set");
+        LOG.info("Tool after properties set");
     }
 }
