@@ -20,6 +20,7 @@ public class SpringBoot5ApplicationTests {
 
     @Test
     public void shouldBeanNotBeNull() {
+        // Then
         assertThat(greetingController).isNotNull();
     }
 }
