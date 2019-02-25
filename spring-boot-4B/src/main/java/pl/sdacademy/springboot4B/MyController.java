@@ -17,6 +17,11 @@ public class MyController {
     @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
     public String printHello() {
         LOG.info("Hello Spring Boot! It’s really awesome!");
-        return "Hello Spring Boot! It’s really awesome!";
+        Course course = new Course();
+        course.setName("SDAcademy - Java");
+        course.setMembersCount(15);
+        course.setLocation("Katowice");
+        return "Welcome on course: " + course.toString();
+//        return "Hello Spring Boot! It’s really awesome!";
     }
 }
