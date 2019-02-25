@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Controller
 @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
 public class GreetingController {
-    //    @Autowired // niezalecane bez konstruktora
-    //    private GreetingService greetingService;
+    // @Autowired // niezalecane bez konstruktora
+    // private GreetingService greetingService;
     private final GreetingService greetingService;
 
     @Autowired
@@ -34,6 +34,6 @@ public class GreetingController {
     @ResponseBody
     public String greetingFromService() {
         return greetingService.greeting();
-//        return "greeting-service"; // widok
+        // return "greeting-service"; // widok
     }
 }
