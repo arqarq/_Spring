@@ -29,7 +29,8 @@ public class HttpRequestTestMock {
     public void shouldGetCorrectAnswerFromController() throws Exception {
         mockMvc.perform(get("/greetingEndpoint"))
 //                .andDo(print())
-                .andExpect(status().isOk())
+//                .andExpect(status().isOk())
+                .andExpect(status().isIAmATeapot())
                 .andExpect(content().string(containsString("Hello")));
     }
 
@@ -38,7 +39,8 @@ public class HttpRequestTestMock {
         when(service.greeting()).thenReturn("Hello Mock");
         mockMvc.perform(get("/greetingService"))
 //                .andDo(print())
-                .andExpect(status().isOk())
+//                .andExpect(status().isOk())
+                .andExpect(status().isIAmATeapot())
                 .andExpect(content().string(containsString("Hello Mock")));
     }
 }
