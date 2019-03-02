@@ -32,8 +32,8 @@ public class GreetingController {
 
     @GetMapping("/greetingService")
     @ResponseBody
-    public String greetingFromService() {
-        return greetingService.greeting();
+    public <T extends String> T greetingFromService() {
+        return (T) greetingService.greeting();
         // return "greeting-service"; // widok
     }
 }

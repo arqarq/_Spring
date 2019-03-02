@@ -7,7 +7,7 @@ public class GreetingService {
     private String message;
 
     GreetingService() {
-        this.message = "Greeting from service";
+        this.message = "Greeting from service!!";
     }
 
     String greeting() {
