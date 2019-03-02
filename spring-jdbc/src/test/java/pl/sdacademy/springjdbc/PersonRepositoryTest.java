@@ -1,4 +1,4 @@
-package pl.sdacademy.springjdbc.model;
+package pl.sdacademy.springjdbc;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.sdacademy.springjdbc.PersonRepository;
 import pl.sdacademy.springjdbc.PersonRepositoryConfig;
 import pl.sdacademy.springjdbc.SpringJdbcApplication;
+import pl.sdacademy.springjdbc.model.Person;
+import pl.sdacademy.springjdbc.model.Profession;
 
 import java.time.LocalDate;
 
@@ -27,16 +29,35 @@ public class PersonRepositoryTest {
 
     @Test
     public void createSimplePersonTest() {
+        // Given
         Person person = Person.builder()
                 .firstName("Arek")
                 .lastName("Sekuła")
                 .dateOfBirth(LocalDate.of(1981, 1, 7))
                 .profession(Profession.F1_DRIVER)
                 .build();
-
+        // When
         Person saved = personRepository.save(person);
-
+        // Then
         assertThat(saved.getId()).isNotNull();
         assertThat(saved.getFirstName()).isEqualTo("Arek");
+        assertThat(saved.getLastName()).isEqualTo("Sekuła");
+        assertThat(saved.getProfession()).isEqualTo(Profession.F1_DRIVER);
+        assertThat(saved.getDateOfBirth()).isEqualTo(LocalDate.of(1981, 1, 7));
+    }
+
+    @Test
+    public void createWriterPersonTest() {
+        // Given
+        Person person = Person.builder()
+                .firstName("Arek")
+                .lastName("Sekuła")
+                .dateOfBirth(LocalDate.of(1981, 1, 7))
+                .profession(Profession.WRITER)
+                .build();
+        // When
+        personRepository.save(person);
+        // Then
+        assertThat(personRepository.countWriters()).isOne();
     }
 }

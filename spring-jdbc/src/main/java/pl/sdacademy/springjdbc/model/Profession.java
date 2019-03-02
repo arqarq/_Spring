@@ -1,5 +1,5 @@
 package pl.sdacademy.springjdbc.model;
 
-enum Profession {
+public enum Profession {
     F1_DRIVER, WRITER
 }
