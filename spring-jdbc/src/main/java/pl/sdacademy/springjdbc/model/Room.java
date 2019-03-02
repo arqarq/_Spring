@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 @Data
-class Room {
+public class Room {
     @Id
     private Long id;
     private int area;

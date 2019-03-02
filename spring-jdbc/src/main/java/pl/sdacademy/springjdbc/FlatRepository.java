@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import pl.sdacademy.springjdbc.model.Flat;
 
 public interface FlatRepository extends CrudRepository<Flat, Long> {
-    @Query("SELECT count(*) FROM room")
+    @Query("SELECT count(*) FROM room WHERE flat = 1")
     int returnRoomsCount();
 }

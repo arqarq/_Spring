@@ -12,4 +12,16 @@ public class Flat {
     private Set<Room> rooms;
     private String address;
     private int area;
+
+    public Flat(String address) {
+        this.address = address;
+    }
+
+    public int giveArea() {
+        int sum = 0;
+        for (Room room : rooms) {
+            sum += room.getArea();
+        }
+        return sum;
+    }
 }
