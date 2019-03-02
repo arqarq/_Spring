@@ -13,6 +13,7 @@ import pl.sdacademy.springjpa.repositories.TeamRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -57,9 +58,13 @@ public class SpringJpaApplicationTests {
 
     @Test
     public void testAddPlayers() {
+        System.out.println("============== ilość obiektów <Player> w bazie: " + playerRepository.count());
         playerRepository.save(player);
+        System.out.println("============== ilość obiektów <Player> w bazie: " + playerRepository.count());
         playerRepository.save(player2);
+        System.out.println("============== ilość obiektów <Player> w bazie: " + playerRepository.count());
         teamRepository.save(team);
+        System.out.println("----========== ilość obiektów <Player> w bazie: " + playerRepository.count());
 
         assertThat(playerRepository.count()).isEqualTo(2);
         assertThat(teamRepository.count()).isOne();
@@ -79,12 +84,29 @@ public class SpringJpaApplicationTests {
         System.out.println(playerRepository.findAll());
         System.out.println(teamRepository.findAll());
 
+        long index = 3L;
+        Team tempTeam = null;
         playerRepository.save(player3);
         playerRepository.save(player4);
-        team.addPlayer(player3);
-        team.addPlayer(player4);
-        teamRepository.save(team);
+        if (teamRepository.existsById(index)) {
+            System.out.println("============== index <Team> w bazie: " + index);
+            Optional<Team> teamById = teamRepository.findById(index);
+            if (teamById.isPresent()) {
+                teamById.get().addPlayer(player3);
+                // teamById.get().addPlayer(player4);
+                tempTeam = teamRepository.save(teamById.get());
+            }
+        }
+        // team.addPlayer(player3);
+        // team.addPlayer(player4);
+        // teamRepository.save(team);
 
-        assertThat(teamRepository.count()).isEqualTo(2);
+        assertThat(teamRepository.count()).isOne();
+        if (tempTeam != null) {
+            teamRepository.delete(tempTeam);
+        }
+        assertThat(teamRepository.count()).isZero();
+        System.out.println("============== ilość obiektów <Player> w bazie: " + playerRepository.count());
+        // assertThat(playerRepository.count()).isOne();
     }
 }

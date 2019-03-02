@@ -14,7 +14,8 @@ public class Team {
     private Long id;
     private String name;
     private String discipline;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    // @OneToMany(fetch = FetchType.EAGER)
     private Set<Player> players = new HashSet<>();
 
     public void addPlayer(Player player) {
