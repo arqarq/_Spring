@@ -1,5 +1,6 @@
 package pl.sdacademy.springjpa;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,33 @@ public class SpringJpaApplicationTests {
     PlayerRepository playerRepository;
     @Autowired
     TeamRepository teamRepository;
+    private Player player = new Player();
+    private Player player2 = new Player();
+    private Player player3 = new Player();
+    private Player player4 = new Player();
+    private Team team = new Team();
+    private Team team2 = new Team();
+
+    @Before
+    public void init_() {
+        player.setFirstName("Arek");
+        player.setLastName("Sekuła");
+        player.setAge(38);
+
+        player2.setFirstName("Marek");
+        player2.setLastName("Sontag");
+
+        player3.setFirstName("Arek2");
+        player3.setLastName("Sekuła2");
+        player3.setAge(381);
+
+        player4.setFirstName("Arek3");
+        player4.setLastName("Sekuła4");
+        player4.setAge(382);
+
+        team.setDiscipline("NBA");
+        team.setPlayers(new HashSet<>(Arrays.asList(player, player2)));
+    }
 
     @Test
     public void contextLoads() {
@@ -29,18 +57,6 @@ public class SpringJpaApplicationTests {
 
     @Test
     public void testAddPlayers() {
-        Player player = new Player();
-        player.setFirstName("Arek");
-        player.setLastName("Sekuła");
-
-        Player player2 = new Player();
-        player2.setFirstName("Marek");
-        player2.setLastName("Sontag");
-
-        Team team = new Team();
-        team.setDiscipline("NBA");
-        team.setPlayers(new HashSet<>(Arrays.asList(player, player2)));
-
         playerRepository.save(player);
         playerRepository.save(player2);
         teamRepository.save(team);
@@ -62,5 +78,13 @@ public class SpringJpaApplicationTests {
     public void testDeletePlayers() {
         System.out.println(playerRepository.findAll());
         System.out.println(teamRepository.findAll());
+
+        playerRepository.save(player3);
+        playerRepository.save(player4);
+        team.addPlayer(player3);
+        team.addPlayer(player4);
+        teamRepository.save(team);
+
+        assertThat(teamRepository.count()).isEqualTo(2);
     }
 }
