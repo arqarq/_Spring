@@ -9,4 +9,10 @@ public interface PlayerRepository extends CrudRepository<Player, Long> {
     List<Player> findByFirstName(String name);
 
     List<Player> findByLastName(String name);
+
+    List<Player> findByAgeLessThan(int age);
+
+    List<Player> findByAgeGreaterThan(int age);
+
+    List<Player> findByAgeBetweenOrAgeEquals(int ageLower, int ageHigher, int exact);
 }

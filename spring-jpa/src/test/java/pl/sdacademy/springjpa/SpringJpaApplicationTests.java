@@ -13,6 +13,7 @@ import pl.sdacademy.springjpa.repositories.TeamRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -108,6 +109,28 @@ public class SpringJpaApplicationTests {
         assertThat(teamRepository.count()).isZero();
         System.out.println("============== ilość obiektów <Player> w bazie: " + playerRepository.count());
         // assertThat(playerRepository.count()).isOne();
+    }
+
+    @Test
+    public void testOtherMethods() {
+        List<Player> wyn = playerRepository.findByLastName("Sekuła2");
+        if (!wyn.isEmpty()) {
+            assertThat(wyn.get(0).getLastName()).isEqualTo("Sekuła2");
+        }
+        List<Player> wyn2 = playerRepository.findByAgeLessThan(381);
+        if (!wyn2.isEmpty()) {
+            assertThat(wyn2.get(0).getAge()).isEqualTo(38);
+            assertThat(wyn2.get(1).getAge()).isEqualTo(0);
+        }
+        List<Player> wyn3 = playerRepository.findByAgeBetweenOrAgeEquals(0, 381, 38);
+        if (!wyn3.isEmpty()) {
+            assertThat(wyn3.get(0).getAge()).isEqualTo(38);
+        }
+        List<Player> wyn4 = playerRepository.findByAgeGreaterThan(38);
+        if (!wyn4.isEmpty()) {
+            assertThat(wyn4.get(0).getAge()).isEqualTo(381);
+            assertThat(wyn4.get(1).getAge()).isEqualTo(382);
+        }
     }
 
     private void printAllIds() {
