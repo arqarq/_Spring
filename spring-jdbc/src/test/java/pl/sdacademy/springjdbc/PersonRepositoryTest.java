@@ -10,6 +10,7 @@ import pl.sdacademy.springjdbc.model.Person;
 import pl.sdacademy.springjdbc.model.Profession;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -54,5 +55,32 @@ public class PersonRepositoryTest {
         personRepository.save(person);
         // Then
         assertThat(personRepository.countWriters()).isOne();
+    }
+
+    @Test
+    public void modifyPersonTest() {
+        Person person = Person.builder()
+                .firstName("John")
+                .lastName("Tolkien")
+                .dateOfBirth(LocalDate.of(1892, 1, 3))
+                .profession(Profession.WRITER)
+                .build();
+
+        Person saved = personRepository.save(person);
+
+        saved.setFirstName("Michael");
+        saved.setLastName("Schumacher");
+        saved.setDateOfBirth(LocalDate.of(1969, 1, 3));
+        saved.setProfession(Profession.F1_DRIVER);
+
+        personRepository.save(saved);
+
+        Optional<Person> found = personRepository.findById(saved.getId());
+
+        assertThat(found).isNotEmpty();
+        assertThat(found.get().getId()).isEqualTo(saved.getId());
+        assertThat(found.get().getFirstName()).isEqualTo("Michael");
+        assertThat(found.get().getLastName()).isEqualTo("Schumacher");
+        assertThat(found.get().getProfession()).isEqualTo(Profession.F1_DRIVER);
     }
 }
