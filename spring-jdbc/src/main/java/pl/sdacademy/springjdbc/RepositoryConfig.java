@@ -15,7 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @EnableJdbcRepositories
-public class PersonRepositoryConfig extends JdbcConfiguration {
+public class RepositoryConfig extends JdbcConfiguration {
     @Autowired
     EmbeddedDatabase dataSource;
 
