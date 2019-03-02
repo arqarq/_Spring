@@ -81,13 +81,14 @@ public class SpringJpaApplicationTests {
 
     @Test
     public void testDeletePlayers() {
-        System.out.println(playerRepository.findAll());
-        System.out.println(teamRepository.findAll());
+        // System.out.println(playerRepository.findAll());
+        // System.out.println(teamRepository.findAll());
 
         long index = 3L;
         Team tempTeam = null;
         playerRepository.save(player3);
         playerRepository.save(player4);
+        printAllIds();
         if (teamRepository.existsById(index)) {
             System.out.println("============== index <Team> w bazie: " + index);
             Optional<Team> teamById = teamRepository.findById(index);
@@ -108,5 +109,18 @@ public class SpringJpaApplicationTests {
         assertThat(teamRepository.count()).isZero();
         System.out.println("============== ilość obiektów <Player> w bazie: " + playerRepository.count());
         // assertThat(playerRepository.count()).isOne();
+    }
+
+    private void printAllIds() {
+        Iterable<Player> all = playerRepository.findAll();
+        System.out.print("===> Players' Ids:");
+        for (Player player : all) {
+            System.out.print(" " + player.getId());
+        }
+        System.out.print(System.lineSeparator() + "===> Teams' Ids:");
+        for (Team team : teamRepository.findAll()) {
+            System.out.print(" " + team.getId());
+        }
+        System.out.print(System.lineSeparator());
     }
 }
