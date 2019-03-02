@@ -10,8 +10,8 @@
     </parent>
     <groupId>pl.sdacademy</groupId>
     <artifactId>spring-jdbc</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>spring-jdbc</name>
+    <version>0.0.1-SNAPSHOT</version>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -24,24 +24,6 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.hibernate</groupId>-->
-            <!--<artifactId>hibernate-core</artifactId>-->
-            <!--<version>5.4.1.Final</version>-->
-        <!--</dependency>-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jdbc</artifactId>
-            <version>1.0.5.RELEASE</version>
-        </dependency>
-        <!--<dependency>-->
         <!--<groupId>org.springframework.data</groupId>-->
         <!--<artifactId>spring-data-commons</artifactId>-->
         <!--<version>2.1.5.RELEASE</version>-->
@@ -49,15 +31,9 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.4.197</version>
-            <!--<scope>test</scope>-->
+            <version>1.4.198</version>
+            <scope>test</scope>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.postgresql</groupId>-->
-            <!--<artifactId>postgresql</artifactId>-->
-            <!--<version>42.2.5</version>-->
-            <!--&lt;!&ndash;<scope>test</scope>&ndash;&gt;-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -67,6 +43,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jdbc</artifactId>
+            <version>1.0.5.RELEASE</version>
         </dependency>
     </dependencies>
 
