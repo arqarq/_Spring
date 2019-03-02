@@ -29,7 +29,6 @@ public class SpringJpaApplicationTests {
     private Player player3 = new Player();
     private Player player4 = new Player();
     private Team team = new Team();
-    private Team team2 = new Team();
 
     @Before
     public void init_() {
