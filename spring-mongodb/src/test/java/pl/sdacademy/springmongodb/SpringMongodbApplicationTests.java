@@ -2,7 +2,6 @@ package pl.sdacademy.springmongodb;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import pl.sdacademy.springmongodb.model.Car;
 import pl.sdacademy.springmongodb.repositories.CarRepository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -95,8 +96,29 @@ public class SpringMongodbApplicationTests {
     }
 
     @Test
-    @Ignore
     public void testDeleteInMongoDB() {
+        Query query = new Query(); // puste - find All
+        query.addCriteria(new Criteria()); // puste - find All
+        assertThat(mongoTemplate.find(query, Car.class).size()).isEqualTo(3);
+
+        car = Car.builder()
+                .id(2L)
+                .build();
+        carRepository.delete(car);
+        assertThat(mongoTemplate.findAll(Car.class).size()).isEqualTo(2);
+        assertThat(mongoTemplate.exists(Query.query(Criteria
+                .where("id")
+                .in(new ArrayList<>(Arrays.asList(1, 3)))), Car.class))
+                .isTrue();
+
+        car = Car.builder()
+                .id(1L)
+                .build();
+        mongoTemplate.remove(car);
+        assertThat(mongoTemplate.findAll(Car.class).size()).isOne();
+        assertThat(mongoTemplate.count(query, Car.class)).isOne();
+        assertThat(carRepository.count()).isOne();
+        assertThat(carRepository.findAll().get(0).getName()).isEqualTo("407");
     }
 
     @Test
