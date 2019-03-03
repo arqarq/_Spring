@@ -41,14 +41,15 @@ public class FlatRepositoryTest {
         flat.setArea(flat.giveArea());
         assertThat(flat.getArea()).isEqualTo(304);
 
-        Flat flatSaved = flatRepository.save(flat);
+        System.out.println("=== Id mieszkania przed 'save': " + flat.getId());
+        flat = flatRepository.save(flat);
         System.out.println("=== powierzchnia mieszkania: " + flat.getArea());
-        System.out.println("=== Id mieszkania: " + flatSaved.getId());
+        System.out.println("=== Id mieszkania po 'save': " + flat.getId());
 
         assertThat(flatRepository.findAll()).isNotEmpty();
         assertThat(flatRepository.returnRoomsCount()).isEqualTo(3);
 
-        flatRepository.delete(flatSaved);
+        flatRepository.delete(flat);
         assertThat(flatRepository.findAll()).isEmpty();
         assertThat(flatRepository.returnRoomsCount()).isZero();
     }
