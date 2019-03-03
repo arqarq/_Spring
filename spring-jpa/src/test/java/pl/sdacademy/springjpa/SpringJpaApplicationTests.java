@@ -1,5 +1,7 @@
 package pl.sdacademy.springjpa;
 
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,14 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.sdacademy.springjpa.model.Player;
+import pl.sdacademy.springjpa.model.QPlayer;
 import pl.sdacademy.springjpa.model.Team;
 import pl.sdacademy.springjpa.repositories.PlayerRepository;
 import pl.sdacademy.springjpa.repositories.TeamRepository;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,10 +25,10 @@ public class SpringJpaApplicationTests {
     PlayerRepository playerRepository;
     @Autowired
     TeamRepository teamRepository;
-    private Player player = new Player();
-    private Player player2 = new Player();
-    private Player player3 = new Player();
-    private Player player4 = new Player();
+    private Player player = new Player("");
+    private Player player2 = new Player("");
+    private Player player3 = new Player("");
+    private Player player4 = new Player("");
     private Team team = new Team();
 
     @Before
@@ -144,5 +144,35 @@ public class SpringJpaApplicationTests {
             System.out.print(" " + team.getId());
         }
         System.out.print(System.lineSeparator());
+    }
+
+    @Test
+    public void shouldTestQuerydsl() {
+        // Given
+        Player jordan = new Player("Jordan");
+        jordan.setAge(20);
+        playerRepository.save(jordan);
+
+        Player realJordan = new Player("Jordan");
+        realJordan.setAge(55);
+        playerRepository.save(realJordan);
+
+        Player shaq = new Player("Shaq");
+        playerRepository.save(shaq);
+
+        Player leBron = new Player("James");
+        leBron.setFirstName("LeBron");
+        playerRepository.save(shaq);
+        // When
+        BooleanExpression jordanExpression = QPlayer.player.lastName.eq("Jordan");
+        OrderSpecifier<Integer> orderByAge = QPlayer.player.age.desc();
+        Iterable<Player> jordans = playerRepository.findAll(jordanExpression, orderByAge);
+        Iterator<Player> iterator = jordans.iterator();
+        // Then
+        jordans.forEach(j -> assertThat(j.getLastName()).isEqualTo("Jordan"));
+        if (iterator.hasNext()) {
+            assertThat(iterator.next().getAge()).isEqualTo(55);
+            assertThat(iterator.next().getAge()).isEqualTo(20);
+        }
     }
 }
