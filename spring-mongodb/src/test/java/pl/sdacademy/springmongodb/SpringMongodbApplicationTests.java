@@ -23,11 +23,19 @@ public class SpringMongodbApplicationTests {
 
     @Test
     public void shouldTestMongoTemplate() {
+        mongoTemplate.dropCollection("car");
         Car car = Car.builder()
-                .brand("Fiat")
+                .brand("Enzo")
                 .name("Fiatarri")
                 .capacity(6500)
                 .hp(200)
+                .build();
+        mongoTemplate.insert(car);
+        car = Car.builder()
+                .brand("Fiat")
+                .name("500")
+                .capacity(560)
+                .hp(50)
                 .build();
         mongoTemplate.insert(car);
         System.out.println("=============");
