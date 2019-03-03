@@ -33,6 +33,7 @@ public class SpringMongodbApplicationTests {
 
     @Before
     public void init_() {
+        mongoTemplate.dropCollection("cars");
         mongoTemplate.createCollection("cars");
 
         car = Car.builder()
