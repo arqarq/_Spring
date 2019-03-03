@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection = "cars")
 public class Car {
-    // private Long id;
+    private Long id;
     private String name;
     private String brand;
     private Integer capacity;

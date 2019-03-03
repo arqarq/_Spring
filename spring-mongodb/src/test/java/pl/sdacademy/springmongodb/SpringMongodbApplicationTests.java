@@ -36,6 +36,7 @@ public class SpringMongodbApplicationTests {
         mongoTemplate.createCollection("cars");
 
         car = Car.builder()
+                .id(1L)
                 .brand("Fiatarri")
                 .name("Enzo")
                 .capacity(6500)
@@ -44,6 +45,7 @@ public class SpringMongodbApplicationTests {
         mongoTemplate.insert(car, "cars");
 
         car = Car.builder()
+                .id(2L)
                 .brand("Fiat")
                 .name("500")
                 .capacity(560)
@@ -52,6 +54,7 @@ public class SpringMongodbApplicationTests {
         mongoTemplate.insert(car, "cars");
 
         car = Car.builder()
+                .id(3L)
                 .brand("Peugeot")
                 .name("407")
                 .capacity(1597)
